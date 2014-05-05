@@ -37,11 +37,14 @@
         var user = tweet.user;
         var message = tweet.message;
         var time = tweet.created_at;
-        $tweet.text('@' + user + ': ' + message + " [" + time + "]");
+        var $userLink = $('<a href="#">@' + user + '</a>');
+        $tweet.append($userLink);
+        var $textElem = $('<text>: ' + message + ' [' + time + ']</text>');
+        $tweet.append($textElem);
         return $tweet;
       }
 
-      // MAIN
+      // MAIN SCRIPT
       $(document).ready(function(){
         // display initial page
         renderPage();
