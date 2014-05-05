@@ -6,22 +6,51 @@
   </head>
   <body>
     <script>
+      // render page
+      function renderPage() {
+        // clear page
+        $body = $("body");
+        $body.html("");
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        // select tweets to display
+        var user = undefined;
+        var tweets = filterTweets(streams.home, user);
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
+        // display tweets
+        for (var i = 0; i < tweets.length; i++) {
+          buildTweetElem(tweets[i]).appendTo($body);
         }
+      }
 
+      // select tweets to display based on given user
+      function filterTweets(tweets, user) {
+        var result = [];
+        for (var i = tweets.length - 1; i >= 0; i--) {
+          if (user === tweets[i].user || user === undefined) result.push(tweets[i]);
+        }
+        return result;
+      }
+
+      // builds DOM elements for given tweet
+      function buildTweetElem(tweet) {
+        var $tweet = $("<div></div>");
+        var user = tweet.user;
+        var message = tweet.message;
+        var time = tweet.created_at;
+        $tweet.text('@' + user + ': ' + message + " [" + time + "]");
+        return $tweet;
+      }
+
+      // MAIN
+      $(document).ready(function(){
+        // display initial page
+        renderPage();
+
+        // initiate render loop
+        window.setInterval(function() {
+          renderPage();
+        }, 1000);
       });
-
     </script>
   </body>
 </html>
