@@ -6,6 +6,9 @@
   </head>
   <body>
     <script>
+      // initialize global variables
+      var userFilter = undefined;
+
       // render page
       function renderPage() {
         // clear page
@@ -13,8 +16,7 @@
         $body.html("");
 
         // select tweets to display
-        var user = undefined;
-        var tweets = filterTweets(streams.home, user);
+        var tweets = filterTweets(streams.home, userFilter);
 
         // display tweets
         for (var i = 0; i < tweets.length; i++) {
@@ -37,10 +39,18 @@
         var user = tweet.user;
         var message = tweet.message;
         var time = tweet.created_at;
+
+        // create tweet user link elem
         var $userLink = $('<a href="#">@' + user + '</a>');
+        $userLink.on('click', function() {
+          userFilter = user;
+        });
         $tweet.append($userLink);
+
+        // create tweet text elem
         var $textElem = $('<text>: ' + message + ' [' + time + ']</text>');
         $tweet.append($textElem);
+
         return $tweet;
       }
 
@@ -52,7 +62,7 @@
         // initiate render loop
         window.setInterval(function() {
           renderPage();
-        }, 1000);
+        }, 5000);
       });
     </script>
   </body>
