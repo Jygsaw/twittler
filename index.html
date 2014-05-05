@@ -42,8 +42,11 @@
 
         // create tweet user link elem
         var $userLink = $('<a href="#">@' + user + '</a>');
-        $userLink.on('click', function() {
+        $userLink.on('click', function(event) {
+          event.stopPropagation();
+          event.preventDefault();
           userFilter = user;
+          renderPage();
         });
         $tweet.append($userLink);
 
@@ -62,7 +65,7 @@
         // initiate render loop
         window.setInterval(function() {
           renderPage();
-        }, 5000);
+        }, 2000);
       });
     </script>
   </body>
