@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="twittler.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="twittler.css"></script>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="jquery.timeago.js"></script>
   </head>
   <body>
     <div class="content"></div>
@@ -61,42 +62,10 @@
         $tweet.append($textElem);
 
         // create tweet time elem
-        var $timeElem = $('<p class="tweet-time">[' + fuzzyTime(timeDiff(time), time) + ']</p>');
+        var $timeElem = $('<p class="tweet-time">[' + $.timeago(time) + ']</p>');
         $tweet.append($timeElem);
 
         return $tweet;
-      }
-
-      // calculate time difference in milliseconds between now and given time
-      function timeDiff(time) {
-        var currTime = new Date();
-        var targetTime = new Date(time);
-        var timeDiff = currTime - targetTime;
-        return timeDiff;
-      }
-
-      // convert milliseconds into fuzzy english
-      function fuzzyTime(milliseconds, time) {
-        var seconds = Math.floor(milliseconds / 1000);
-        var minutes = Math.floor(seconds / 60);
-        var hours = Math.floor(minutes / 60);
-        var result = "";
-
-        if (hours > 24) {
-          result = time;
-        } else if (hours >= 1) {
-          result = hours + (hours === 1 ? " hour ago" : " hours ago");
-        } else if (minutes >= 1) {
-          result = minutes + (minutes === 1 ? " minute ago" : " minutes ago");
-        } else if (seconds >= 1) {
-          result = seconds + (seconds === 1 ? " second ago" : " seconds ago");
-        } else if (seconds < 1) {
-          result = "now";
-        } else {
-          result = time;
-        }
-
-        return result;
       }
 
       // MAIN SCRIPT
