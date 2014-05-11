@@ -24,6 +24,10 @@
         for (var i = 0; i < tweets.length; i++) {
           buildTweetElem(tweets[i]).appendTo($content);
         }
+
+        // tweet alternate shading
+        $content.find('.tweet:odd').addClass('tweet-light');
+        $content.find('.tweet:even').addClass('tweet-dark');
       }
 
       // select tweets to display based on given user
@@ -37,7 +41,7 @@
 
       // builds DOM elements for given tweet
       function buildTweetElem(tweet) {
-        var $tweet = $("<div></div>");
+        var $tweet = $('<div class="tweet"></div>');
         var user = tweet.user;
         var message = tweet.message;
         var time = tweet.created_at;
@@ -53,8 +57,10 @@
         $tweet.append($userLink);
 
         // create tweet text elem
-        var $textElem = $('<text>: ' + message + ' [' + time + ']</text>');
+        var $textElem = $('<p class="tweet-msg">' + message + '</p>');
         $tweet.append($textElem);
+        var $timeElem = $('<p class="tweet-time">[' + time + ']</p>');
+        $tweet.append($timeElem);
 
         return $tweet;
       }
@@ -65,9 +71,12 @@
         renderTweets();
 
         // initiate render loop
+// disable refresh
+/*
         window.setInterval(function() {
           renderTweets();
         }, 2000);
+*/
       });
     </script>
   </body>

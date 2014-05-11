@@ -3,5 +3,19 @@
 	}
 	html, body {
 		height: 100%;
-		background: silver;
+	}
+	.tweet {
+	}
+	.tweet-dark {
+		background: #DDA0DD;
+	}
+	.tweet-light {
+		background: #DFB8DF;
+	}
+	.tweet-user {
+	}
+	.tweet-msg {
+	}
+	.tweet-time {
+		color: grey;
 	}
