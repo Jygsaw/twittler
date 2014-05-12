@@ -4,6 +4,20 @@
 	html, body {
 		height: 100%;
 	}
+	.leftnav {
+		float: left;
+		background: silver;
+		width: 150px;
+		height: 100%;
+	}
+	.profile-pic {
+		width: 150px;
+		height: 150px;
+		border: 1px solid green;
+	}
+	.content {
+		margin-left: 150px;
+	}
 	.tweet {
 	}
 	.tweet-dark {
