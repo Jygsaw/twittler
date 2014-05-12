@@ -10,9 +10,12 @@
 		height: 100%;
 	}
 	.profile-pic {
+		border: 1px solid green;
 		width: 150px;
 		height: 150px;
-		border: 1px solid green;
+		line-height: 150px;
+		vertical-align: center;
+		text-align: center;
 	}
 	.content {
 		margin-left: 150px;
@@ -30,5 +33,5 @@
 	.tweet-msg {
 	}
 	.tweet-time {
-		color: grey;
+		color: gray;
 	}
